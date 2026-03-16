@@ -56,9 +56,11 @@ class BookingRequestQueue {
 
     public void displayQueue() {
         System.out.println("\n===== Booking Request Queue =====");
+
         for (Reservation r : requestQueue) {
             r.displayReservation();
         }
+
         System.out.println("---------------------------------");
     }
 }
@@ -77,10 +79,12 @@ class BookingService {
 
             if (inventory.getAvailability(roomType) > 0) {
 
-                String roomId = roomType.replace(" ", "") + "-" + UUID.randomUUID().toString().substring(0, 5);
+                String roomId = roomType.replace(" ", "") + "-" +
+                        UUID.randomUUID().toString().substring(0, 5);
 
                 while (allocatedRoomIds.contains(roomId)) {
-                    roomId = roomType.replace(" ", "") + "-" + UUID.randomUUID().toString().substring(0, 5);
+                    roomId = roomType.replace(" ", "") + "-" +
+                            UUID.randomUUID().toString().substring(0, 5);
                 }
 
                 allocatedRoomIds.add(roomId);
@@ -97,11 +101,13 @@ class BookingService {
                 System.out.println("-----------------------------");
 
             } else {
-                System.out.println("Reservation Failed for " + reservation.guestName + " (No rooms available)");
+                System.out.println("Reservation Failed for "
+                        + reservation.guestName + " (No rooms available)");
             }
         }
     }
 }
+
 public class Bookmystayapp {
 
     abstract static class Room {
