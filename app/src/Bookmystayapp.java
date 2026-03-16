@@ -1,11 +1,55 @@
-public class Bookmystayapp {
+import java.util.HashMap;
+import java.util.Map;
 
-    public static void main(String[] args) {
+        class RoomInventory {
+            private HashMap<String, Integer> inventory;
 
-        System.out.println("Welcome to the Hotel Booking Management System");
-        System.out.println("Application: Book My Stay App");
-        System.out.println("Version: 1.0");
-        System.out.println("System initialized successfully.");
+            public RoomInventory() {
+                inventory = new HashMap<>();
 
-    }
-}
+                inventory.put("Single Room", 5);
+                inventory.put("Double Room", 3);
+                inventory.put("Suite Room", 2);
+            }
+
+            public int getAvailability(String roomType) {
+                return inventory.getOrDefault(roomType, 0);
+            }
+
+            public void updateAvailability(String roomType, int newCount) {
+                inventory.put(roomType, newCount);
+            }
+
+            public void displayInventory() {
+                System.out.println("===== Current Room Inventory =====");
+
+                for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+                    System.out.println(entry.getKey() + " : " + entry.getValue() + " rooms available");
+                }
+
+                System.out.println("----------------------------------");
+            }
+        }
+
+        public class Bookmystayapp {
+
+            public static void main(String[] args) {
+
+                System.out.println("===== Book My Stay App =====");
+
+                RoomInventory inventory = new RoomInventory();
+
+                inventory.displayInventory();
+
+                System.out.println("\nChecking availability for Single Room:");
+                System.out.println("Available: " + inventory.getAvailability("Single Room"));
+
+                System.out.println("\nUpdating Single Room availability...");
+                inventory.updateAvailability("Single Room", 4);
+
+                System.out.println("\nUpdated Inventory:");
+                inventory.displayInventory();
+
+                System.out.println("Application Terminated.");
+            }
+        }
